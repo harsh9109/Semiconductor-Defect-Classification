@@ -1,62 +1,80 @@
-# Semiconductor Defect Classification — MobileNet (Improved)
+# 🔬 Semiconductor Defect Classification — MobileNet (Improved)
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange)
-![ONNX](https://img.shields.io/badge/ONNX-Inference-blueviolet)
+![ONNX](https://img.shields.io/badge/ONNX-Deployment-blueviolet)
 ![Status](https://img.shields.io/badge/Status-Phase%201%20Complete-success)
+![Model](https://img.shields.io/badge/Model-MobileNetV2-lightgrey)
 
 ---
 
 ## 📌 Project Overview
-This project implements a **Deep Learning-based Defect Classification System** for semiconductor wafers. It uses a customized **MobileNetV2** architecture to identify various manufacturing defects.
+This project presents a **Deep Learning–based semiconductor wafer defect classification system** built using a customized **MobileNetV2** architecture.
 
-The model is optimized for **Edge Deployment** (e.g., Raspberry Pi, NXP i.MX, Hailo AI accelerators) by prioritizing **low latency and high recall**, ensuring that critical defects are not missed during inspection.
+The primary objective is to **accurately detect manufacturing defects while prioritizing high recall**, ensuring that **critical defects are not missed** during inspection.  
+The model is designed to be **lightweight, robust, and deployable on edge devices**, making it suitable for real-world semiconductor inspection pipelines.
 
-The complete pipeline includes **data leakage checks, class imbalance handling, model evaluation, and ONNX export**, making it fully **Phase-1 compliant**.
+The complete workflow — from dataset validation to ONNX deployment — is implemented with **Phase-1 hackathon compliance** in mind.
+
+---
+
+## 🎯 Key Objectives
+- Detect multiple semiconductor wafer defects reliably  
+- Minimize **false negatives** (missed defects)  
+- Maintain **edge-friendly model size and latency**  
+- Ensure **data integrity and reproducibility**  
 
 ---
 
 ## 🚀 Key Features
-- **Architecture:** MobileNetV2 (Transfer Learning) with modified classification head  
-- **Deployment Ready:** Includes `.onnx` model format for hardware acceleration  
-- **Phase-1 Compliant:**  
-  - Strict data leakage checks (hash + filename based)  
-  - Safe augmentation strategy (no flips or heavy distortions)  
-  - Class imbalance handling using class weights  
-- **High Recall Focus:** Optimized to minimize false negatives (missed defects)  
-- **Data Integrity:** Includes label encoding for consistent class mapping  
+- **Model Architecture:** MobileNetV2 with transfer learning and a custom classification head  
+- **Phase-1 Compliant Pipeline:**  
+  - Strict data leakage checks (hash-based & filename-based)  
+  - Safe augmentation strategy (no flips or semantic distortions)  
+  - Class imbalance handling using computed class weights  
+- **High-Recall Optimization:** Designed to catch real defects even at the cost of extra false alarms  
+- **Deployment Ready:** ONNX export for non-Python and edge inference  
+- **Reproducibility:** Label encoder included for consistent class decoding  
 
 ---
 
-## 📂 Dataset & Classes
-The model classifies wafer SEM images into **8 distinct defect categories**:
+## 🧪 Defect Classes
+The model classifies SEM wafer images into **8 defect categories**:
 
 1. `bridge`  
-2. `clean` (No defect)  
+2. `clean` *(no defect)*  
 3. `CMP(scratch)`  
 4. `cracks`  
-5. `LER` (Line Edge Roughness)  
+5. `LER` *(Line Edge Roughness)*  
 6. `open`  
 7. `others`  
 8. `vias`  
 
-> **Note:**  
-> Class imbalance is handled using **computed class weights** and controlled sampling during training.
+> **Class Imbalance Handling:**  
+> Balanced training is achieved using **computed class weights**, preventing bias toward majority classes.
 
 ---
 
-## 📁 Repository Structure | File Name | Description | | :--- | :--- | | defect_classification_mobilenet_improved.ipynb | **Main Notebook**. Contains the full training pipeline, EDA, data leakage checks, evaluation metrics, and export logic. | | best_model_mobilenet_improved.pth | **PyTorch Weights**. The saved model state dict with the highest validation accuracy/recall during training. | | defect_classification_mobilenet_improved.onnx | **Inference Model**. The optimized ONNX graph, ready for deployment on edge devices or non-Python environments. | | label_encoder_mobilenet_improved.pkl | **Label Encoder**. A serialized Scikit-Learn object to decode model predictions (Integers) back to Class Names (Strings). |
+## 📁 Repository Structure
+| File / Folder | Description |
+|---------------|-------------|
+| `defect_classification_mobilenet_improved.ipynb` | Main notebook: EDA, leakage checks, training, evaluation, and ONNX export |
+| `best_model_mobilenet_improved.pth` | Best trained PyTorch model weights |
+| `defect_classification_mobilenet_improved.onnx` | Deployment-ready ONNX inference model |
+| `label_encoder_mobilenet_improved.pkl` | Label encoder for decoding predicted class indices |
+| `dataset/` | Organized dataset with `train / validate / test` splits |
+| `README.md` | Project documentation |
 
 ---
 
 ## 🛠️ Installation & Requirements
-To run this project locally, install the required dependencies:
+Install the required dependencies:
 
 ```bash
 pip install torch torchvision numpy pandas matplotlib scikit-learn onnx onnxruntime
 💻 Usage
 1️⃣ Training & Evaluation
-Open the Jupyter Notebook:
+Open the notebook below to reproduce training and evaluation:
 
 defect_classification_mobilenet_improved.ipynb
 The notebook includes:
@@ -67,22 +85,22 @@ Data leakage detection
 
 Transfer learning with MobileNetV2
 
-Evaluation metrics (Accuracy, Precision, Recall, F1-Score)
+Evaluation metrics: Accuracy, Precision, Recall, F1-Score
 
 Confusion matrix & overfitting analysis
 
-ONNX export
+ONNX model export
 
-2️⃣ Inference (ONNX – Python Example)
+2️⃣ Inference Using ONNX (Python Example)
 import onnxruntime as ort
 import numpy as np
 import pickle
 
-# Load Label Encoder
-with open('label_encoder_mobilenet_improved.pkl', 'rb') as f:
+# Load label encoder
+with open("label_encoder_mobilenet_improved.pkl", "rb") as f:
     label_encoder = pickle.load(f)
 
-# Load ONNX Model
+# Load ONNX model
 session = ort.InferenceSession("defect_classification_mobilenet_improved.onnx")
 
 # input_image must be preprocessed to shape [1, 3, 224, 224]
@@ -93,10 +111,10 @@ predicted_idx = np.argmax(outputs[0])
 predicted_label = label_encoder.inverse_transform([predicted_idx])[0]
 
 print(f"Predicted Defect: {predicted_label}")
-📊 Results Summary
-Model Size: Lightweight (~2–3 MB), suitable for embedded systems
+📊 Results Summary (Phase-1)
+Model Size: ~2–3 MB (edge-friendly)
 
-Priority Metric: Recall (to ensure safety in defect detection)
+Priority Metric: Recall (critical defect detection)
 
 Evaluation Includes:
 
@@ -106,21 +124,21 @@ Per-class metrics
 
 Confusion matrix
 
-Data Leakage: Confirmed 0% overlap across train / validation / test sets
+Data Leakage: ✅ 0% overlap confirmed across train / validation / test splits
 
-🧪 Phase-1 Evaluation Philosophy
-Accuracy alone is insufficient for semiconductor inspection
+🧠 Phase-1 Evaluation Philosophy
+Accuracy alone is not sufficient for semiconductor inspection
 
 Recall is prioritized to avoid missing real defects
 
-False alarms are acceptable compared to missed defects
+False alarms are preferable to undetected failures
 
-Lightweight CNNs generalize better on small SEM datasets
+Lightweight CNNs generalize better on limited SEM datasets
 
-🧭 Next Stage — Phase-2 Scope
-Planned improvements for the next phase include:
+🧭 Next Stage — Phase-2 Roadmap
+Planned improvements in Phase-2 include:
 
-Larger and more diverse SEM datasets
+Expansion of SEM dataset diversity
 
 Improved generalization across defect sub-types
 
@@ -128,8 +146,8 @@ Model compression (INT8 quantization, pruning)
 
 Hardware-specific optimization for edge AI accelerators
 
-Real-time deployment benchmarking on embedded platforms
+Real-time benchmarking on embedded platforms
 
 📜 License
 This project is open-source and intended for research and educational purposes.
-Feel free to fork, use, and extend the work.
+You are welcome to fork, use, and extend this work.
