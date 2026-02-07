@@ -16,6 +16,35 @@ The model is designed to be **lightweight, robust, and deployable on edge device
 
 The complete workflow — from dataset validation to ONNX deployment — is implemented with **Phase-1 hackathon compliance** in mind.
 
+This repository is structured to **strictly comply with Phase-1 Idea Submission requirements of the IESA DeepTech Hackathon 2026**.
+
+---
+
+## 🔗 Artifacts & Links (Phase-1 Submission)
+
+Due to hackathon portal upload limitations, large artifacts are hosted externally on **Google Drive**.
+
+### 📦 Dataset (ZIP)
+Google Drive:  
+https://drive.google.com/file/d/1gN3BLIT8yc-gYE33q-fE1MXMyPceb3PA/view?usp=sharing
+
+After downloading, extract `dataset.zip` to obtain:
+- `train/`
+- `validate/`
+- `test/`
+
+Each folder contains **SEM die-level wafer images** organized for Phase-1 classification.
+
+---
+
+### 🧠 ONNX Model
+Google Drive:  
+https://drive.google.com/file/d/1T2Mlma-Ul2_UTpju0vzVBS3ybPPc1OB6/view?usp=sharing
+
+- File: `defect_classification_mobilenet_improved.onnx`  
+- Architecture: **MobileNetV2 (lightweight, edge-friendly)**  
+- Deployment: Phase-1 inference & edge evaluation  
+
 ---
 
 ## 🎯 Key Objectives
@@ -56,18 +85,20 @@ The model classifies SEM wafer images into **8 defect categories**:
 ---
 
 ## 📁 Repository Structure
+
 | File / Folder | Description |
 |---------------|-------------|
 | `defect_classification_mobilenet_improved.ipynb` | Main notebook: EDA, leakage checks, training, evaluation, and ONNX export |
 | `best_model_mobilenet_improved.pth` | Best trained PyTorch model weights |
 | `defect_classification_mobilenet_improved.onnx` | Deployment-ready ONNX inference model |
 | `label_encoder_mobilenet_improved.pkl` | Label encoder for decoding predicted class indices |
-| `dataset/` | Organized dataset with `train / validate / test` splits |
+| `dataset/` | Dataset structure reference (actual data hosted externally) |
 | `README.md` | Project documentation |
 
 ---
 
 ## 🛠️ Installation & Requirements
+
 Install the required dependencies:
 
 ```bash
@@ -112,11 +143,11 @@ predicted_label = label_encoder.inverse_transform([predicted_idx])[0]
 
 print(f"Predicted Defect: {predicted_label}")
 📊 Results Summary (Phase-1)
-- **Model Size:** ~10 MB (FP32 ONNX/PyTorch), suitable for edge deployment; can be reduced further using quantization in Phase-2
+Model Size: ~10 MB (FP32 ONNX / PyTorch), suitable for edge deployment
 
 Priority Metric: Recall (critical defect detection)
 
-Evaluation Includes:
+Evaluation includes:
 
 Accuracy, Precision, Recall, F1-Score
 
