@@ -26,7 +26,7 @@ Due to hackathon portal upload limitations, large artifacts are hosted externall
 
 ### 📦 Dataset (ZIP)
 Google Drive:  
-https://drive.google.com/file/d/1gN3BLIT8yc-gYE33q-fE1MXMyPceb3PA/view?usp=sharing
+https://drive.google.com/file/d/1Cs1b6hJ1wP4wacFNQdTzKEP_fFK6W8sN/view?usp=sharing
 
 After downloading, extract `dataset.zip` to obtain:
 - `train/`
