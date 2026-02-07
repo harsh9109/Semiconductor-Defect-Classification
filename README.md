@@ -112,7 +112,7 @@ predicted_label = label_encoder.inverse_transform([predicted_idx])[0]
 
 print(f"Predicted Defect: {predicted_label}")
 📊 Results Summary (Phase-1)
-Model Size: ~2–3 MB (edge-friendly)
+- **Model Size:** ~10 MB (FP32 ONNX/PyTorch), suitable for edge deployment; can be reduced further using quantization in Phase-2
 
 Priority Metric: Recall (critical defect detection)
 
