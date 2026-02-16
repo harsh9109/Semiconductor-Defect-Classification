@@ -1,0 +1,358 @@
+================================================================================
+DEEPTECH HACKATHON 2026 - PHASE 2 INFERENCE LOG
+================================================================================
+Date & Time    : 2026-02-16 20:32:44
+Idea ID        : 268
+Team Name      : EdgeIntel
+Team Leader    : Harshvardhan Bharat Mali
+--------------------------------------------------------------------------------
+
+[ENVIRONMENT]
+Python Version : 3.12.0
+ONNX Runtime   : 1.24.1
+NumPy Version  : 2.3.5
+
+[CONFIGURATION]
+Model File     : defect_classification_mobilenet_improved.onnx
+Dataset Folder : hackathon_test_dataset
+Input Size     : 224x224
+Total Samples  : 296
+Classes        : [np.str_('CMP(scratch)'), np.str_('LER'), np.str_('bridge'), np.str_('clean'), np.str_('cracks'), np.str_('open'), np.str_('others'), np.str_('vias')]
+
+[FINAL RESULTS]
+--------------------------------------------------------------------------------
+Accuracy        : 0.43919
+Precision (Macro): 0.51258
+Recall (Macro)   : 0.40810
+--------------------------------------------------------------------------------
+
+[DETAILED CLASSIFICATION REPORT]
+              precision    recall  f1-score   support
+
+CMP(scratch)     0.5385    0.4667    0.5000        30
+         LER     0.5833    0.2333    0.3333        30
+      bridge     0.3333    0.6250    0.4348        32
+       clean     0.5294    0.2727    0.3600        33
+      cracks     0.7917    0.6129    0.6909        31
+        open     0.2121    0.2333    0.2222        30
+      others     0.4123    0.5875    0.4845        80
+        vias     0.7000    0.2333    0.3500        30
+
+    accuracy                         0.4392       296
+   macro avg     0.5126    0.4081    0.4220       296
+weighted avg     0.4955    0.4392    0.4329       296
+
+
+[CONFUSION MATRIX]
+[[14  0  3  0  2  4  7  0]
+ [ 0  7 14  0  0  3  6  0]
+ [ 0  1 20  1  0  2  7  1]
+ [ 3  0  3  9  1  4 11  2]
+ [ 0  0  1  0 19  1 10  0]
+ [ 0  2 14  1  0  7  6  0]
+ [ 9  2  5  4  2 11 47  0]
+ [ 0  0  0  2  0  1 20  7]]
+
+================================================================================
+[DETAILED PREDICTIONS PER IMAGE]
+================================================================================
+Image Name                               | True Label      | Predicted       | Status
+-------------------------------------------------------------------------------------
+BRG_001.png                              | bridge          | bridge          | CORRECT
+BRG_002.png                              | bridge          | bridge          | CORRECT
+BRG_003.png                              | bridge          | bridge          | CORRECT
+BRG_004.png                              | bridge          | bridge          | CORRECT
+BRG_005.png                              | bridge          | bridge          | CORRECT
+BRG_006.png                              | bridge          | clean           | WRONG
+BRG_007.png                              | bridge          | others          | WRONG
+BRG_008.png                              | bridge          | others          | WRONG
+BRG_009.png                              | bridge          | others          | WRONG
+BRG_010.png                              | bridge          | others          | WRONG
+BRG_011.png                              | bridge          | bridge          | CORRECT
+BRG_012.png                              | bridge          | bridge          | CORRECT
+BRG_013.png                              | bridge          | open            | WRONG
+BRG_014.png                              | bridge          | bridge          | CORRECT
+BRG_015.png                              | bridge          | open            | WRONG
+BRG_016.png                              | bridge          | bridge          | CORRECT
+BRG_017.png                              | bridge          | others          | WRONG
+BRG_018.png                              | bridge          | bridge          | CORRECT
+BRG_019.png                              | bridge          | bridge          | CORRECT
+BRG_020.png                              | bridge          | others          | WRONG
+BRG_021.png                              | bridge          | LER             | WRONG
+BRG_022.png                              | bridge          | bridge          | CORRECT
+BRG_023.png                              | bridge          | others          | WRONG
+BRG_024.png                              | bridge          | bridge          | CORRECT
+BRG_025.png                              | bridge          | bridge          | CORRECT
+BRG_026.png                              | bridge          | vias            | WRONG
+BRG_027.png                              | bridge          | bridge          | CORRECT
+BRG_028.png                              | bridge          | bridge          | CORRECT
+BRG_029.png                              | bridge          | bridge          | CORRECT
+BRG_030.png                              | bridge          | bridge          | CORRECT
+BRG_031.png                              | bridge          | bridge          | CORRECT
+BRG_032.png                              | bridge          | bridge          | CORRECT
+CLN_001.png                              | clean           | others          | WRONG
+CLN_002.png                              | clean           | clean           | CORRECT
+CLN_003.png                              | clean           | clean           | CORRECT
+CLN_004.png                              | clean           | clean           | CORRECT
+CLN_005.png                              | clean           | vias            | WRONG
+CLN_006.png                              | clean           | bridge          | WRONG
+CLN_007.png                              | clean           | CMP(scratch)    | WRONG
+CLN_008.png                              | clean           | CMP(scratch)    | WRONG
+CLN_009.png                              | clean           | CMP(scratch)    | WRONG
+CLN_010.png                              | clean           | others          | WRONG
+CLN_011.png                              | clean           | cracks          | WRONG
+CLN_012.png                              | clean           | others          | WRONG
+CLN_013.png                              | clean           | others          | WRONG
+CLN_014.png                              | clean           | others          | WRONG
+CLN_015.png                              | clean           | bridge          | WRONG
+CLN_016.png                              | clean           | clean           | CORRECT
+CLN_017.png                              | clean           | clean           | CORRECT
+CLN_018.png                              | clean           | others          | WRONG
+CLN_019.png                              | clean           | others          | WRONG
+CLN_020.png                              | clean           | clean           | CORRECT
+CLN_021.png                              | clean           | open            | WRONG
+CLN_022.png                              | clean           | open            | WRONG
+CLN_023.png                              | clean           | open            | WRONG
+CLN_024.png                              | clean           | open            | WRONG
+CLN_025.png                              | clean           | others          | WRONG
+CLN_026.png                              | clean           | others          | WRONG
+CLN_027.png                              | clean           | others          | WRONG
+CLN_028.png                              | clean           | others          | WRONG
+CLN_029.png                              | clean           | clean           | CORRECT
+CLN_030.png                              | clean           | vias            | WRONG
+CLN_031.png                              | clean           | clean           | CORRECT
+CLN_032.png                              | clean           | bridge          | WRONG
+CLN_033.png                              | clean           | clean           | CORRECT
+CMP_001.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_002.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_003.png                              | CMP(scratch)    | bridge          | WRONG
+CMP_004.png                              | CMP(scratch)    | open            | WRONG
+CMP_005.png                              | CMP(scratch)    | others          | WRONG
+CMP_006.png                              | CMP(scratch)    | others          | WRONG
+CMP_007.png                              | CMP(scratch)    | bridge          | WRONG
+CMP_008.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_009.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_010.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_011.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_012.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_013.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_014.png                              | CMP(scratch)    | cracks          | WRONG
+CMP_015.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_016.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_017.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_018.png                              | CMP(scratch)    | others          | WRONG
+CMP_019.png                              | CMP(scratch)    | open            | WRONG
+CMP_020.png                              | CMP(scratch)    | cracks          | WRONG
+CMP_021.png                              | CMP(scratch)    | others          | WRONG
+CMP_022.png                              | CMP(scratch)    | open            | WRONG
+CMP_023.png                              | CMP(scratch)    | bridge          | WRONG
+CMP_024.png                              | CMP(scratch)    | others          | WRONG
+CMP_025.png                              | CMP(scratch)    | others          | WRONG
+CMP_026.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_027.png                              | CMP(scratch)    | open            | WRONG
+CMP_028.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_029.png                              | CMP(scratch)    | CMP(scratch)    | CORRECT
+CMP_030.png                              | CMP(scratch)    | others          | WRONG
+CRK_001.png                              | cracks          | bridge          | WRONG
+CRK_002.png                              | cracks          | others          | WRONG
+CRK_003.png                              | cracks          | others          | WRONG
+CRK_004.png                              | cracks          | cracks          | CORRECT
+CRK_005.png                              | cracks          | cracks          | CORRECT
+CRK_006.png                              | cracks          | cracks          | CORRECT
+CRK_007.png                              | cracks          | cracks          | CORRECT
+CRK_008.png                              | cracks          | cracks          | CORRECT
+CRK_009.png                              | cracks          | cracks          | CORRECT
+CRK_010.png                              | cracks          | cracks          | CORRECT
+CRK_011.png                              | cracks          | others          | WRONG
+CRK_012.png                              | cracks          | cracks          | CORRECT
+CRK_013.png                              | cracks          | cracks          | CORRECT
+CRK_014.png                              | cracks          | cracks          | CORRECT
+CRK_015.png                              | cracks          | cracks          | CORRECT
+CRK_016.png                              | cracks          | cracks          | CORRECT
+CRK_017.png                              | cracks          | cracks          | CORRECT
+CRK_018.png                              | cracks          | cracks          | CORRECT
+CRK_019.png                              | cracks          | cracks          | CORRECT
+CRK_020.png                              | cracks          | others          | WRONG
+CRK_021.png                              | cracks          | others          | WRONG
+CRK_022.png                              | cracks          | cracks          | CORRECT
+CRK_023.png                              | cracks          | others          | WRONG
+CRK_024.png                              | cracks          | open            | WRONG
+CRK_025.png                              | cracks          | cracks          | CORRECT
+CRK_026.png                              | cracks          | others          | WRONG
+CRK_027.png                              | cracks          | others          | WRONG
+CRK_028.png                              | cracks          | cracks          | CORRECT
+CRK_029.png                              | cracks          | others          | WRONG
+CRK_030.png                              | cracks          | others          | WRONG
+CRK_031.png                              | cracks          | cracks          | CORRECT
+LER_001.png                              | LER             | bridge          | WRONG
+LER_002.png                              | LER             | others          | WRONG
+LER_003.png                              | LER             | LER             | CORRECT
+LER_004.png                              | LER             | bridge          | WRONG
+LER_005.png                              | LER             | others          | WRONG
+LER_006.png                              | LER             | LER             | CORRECT
+LER_007.png                              | LER             | LER             | CORRECT
+LER_008.png                              | LER             | open            | WRONG
+LER_009.png                              | LER             | bridge          | WRONG
+LER_010.png                              | LER             | others          | WRONG
+LER_011.png                              | LER             | bridge          | WRONG
+LER_012.png                              | LER             | LER             | CORRECT
+LER_013.png                              | LER             | LER             | CORRECT
+LER_014.png                              | LER             | open            | WRONG
+LER_015.png                              | LER             | bridge          | WRONG
+LER_016.png                              | LER             | others          | WRONG
+LER_017.png                              | LER             | bridge          | WRONG
+LER_018.png                              | LER             | bridge          | WRONG
+LER_019.png                              | LER             | bridge          | WRONG
+LER_020.png                              | LER             | bridge          | WRONG
+LER_021.png                              | LER             | bridge          | WRONG
+LER_022.png                              | LER             | others          | WRONG
+LER_023.png                              | LER             | bridge          | WRONG
+LER_024.png                              | LER             | LER             | CORRECT
+LER_025.png                              | LER             | bridge          | WRONG
+LER_026.png                              | LER             | bridge          | WRONG
+LER_027.png                              | LER             | bridge          | WRONG
+LER_028.png                              | LER             | open            | WRONG
+LER_029.png                              | LER             | LER             | CORRECT
+LER_030.png                              | LER             | others          | WRONG
+OPN_001.png                              | open            | others          | WRONG
+OPN_002.png                              | open            | open            | CORRECT
+OPN_003.png                              | open            | clean           | WRONG
+OPN_004.png                              | open            | bridge          | WRONG
+OPN_005.png                              | open            | bridge          | WRONG
+OPN_006.png                              | open            | bridge          | WRONG
+OPN_007.png                              | open            | bridge          | WRONG
+OPN_008.png                              | open            | open            | CORRECT
+OPN_009.png                              | open            | others          | WRONG
+OPN_010.png                              | open            | LER             | WRONG
+OPN_011.png                              | open            | bridge          | WRONG
+OPN_012.png                              | open            | bridge          | WRONG
+OPN_013.png                              | open            | open            | CORRECT
+OPN_014.png                              | open            | bridge          | WRONG
+OPN_015.png                              | open            | open            | CORRECT
+OPN_016.png                              | open            | bridge          | WRONG
+OPN_017.png                              | open            | others          | WRONG
+OPN_018.png                              | open            | bridge          | WRONG
+OPN_019.png                              | open            | bridge          | WRONG
+OPN_020.png                              | open            | bridge          | WRONG
+OPN_021.png                              | open            | bridge          | WRONG
+OPN_022.png                              | open            | open            | CORRECT
+OPN_023.png                              | open            | open            | CORRECT
+OPN_024.png                              | open            | bridge          | WRONG
+OPN_025.png                              | open            | open            | CORRECT
+OPN_026.png                              | open            | others          | WRONG
+OPN_027.png                              | open            | others          | WRONG
+OPN_028.png                              | open            | LER             | WRONG
+OPN_029.png                              | open            | bridge          | WRONG
+OPN_030.png                              | open            | others          | WRONG
+OTH_001.png                              | others          | open            | WRONG
+OTH_002.png                              | others          | CMP(scratch)    | WRONG
+OTH_003.png                              | others          | LER             | WRONG
+OTH_004.png                              | others          | bridge          | WRONG
+OTH_005.png                              | others          | others          | CORRECT
+OTH_006.png                              | others          | bridge          | WRONG
+OTH_007.png                              | others          | others          | CORRECT
+OTH_008.png                              | others          | others          | CORRECT
+OTH_009.png                              | others          | others          | CORRECT
+OTH_010.png                              | others          | cracks          | WRONG
+OTH_011.png                              | others          | others          | CORRECT
+OTH_012.png                              | others          | others          | CORRECT
+OTH_013.png                              | others          | others          | CORRECT
+OTH_014.png                              | others          | others          | CORRECT
+OTH_015.png                              | others          | others          | CORRECT
+OTH_016.png                              | others          | open            | WRONG
+OTH_017.png                              | others          | open            | WRONG
+OTH_018.png                              | others          | others          | CORRECT
+OTH_019.png                              | others          | others          | CORRECT
+OTH_020.png                              | others          | others          | CORRECT
+OTH_021.png                              | others          | others          | CORRECT
+OTH_022.png                              | others          | others          | CORRECT
+OTH_023.png                              | others          | open            | WRONG
+OTH_024.png                              | others          | others          | CORRECT
+OTH_025.png                              | others          | others          | CORRECT
+OTH_026.png                              | others          | clean           | WRONG
+OTH_027.png                              | others          | CMP(scratch)    | WRONG
+OTH_028.png                              | others          | others          | CORRECT
+OTH_029.png                              | others          | clean           | WRONG
+OTH_030.png                              | others          | others          | CORRECT
+OTH_031.png                              | others          | others          | CORRECT
+OTH_032.png                              | others          | clean           | WRONG
+OTH_033.png                              | others          | others          | CORRECT
+OTH_034.png                              | others          | CMP(scratch)    | WRONG
+OTH_035.png                              | others          | others          | CORRECT
+OTH_036.png                              | others          | CMP(scratch)    | WRONG
+OTH_037.png                              | others          | clean           | WRONG
+OTH_038.png                              | others          | others          | CORRECT
+OTH_039.png                              | others          | others          | CORRECT
+OTH_040.png                              | others          | others          | CORRECT
+OTH_041.png                              | others          | others          | CORRECT
+OTH_042.png                              | others          | others          | CORRECT
+OTH_043.png                              | others          | others          | CORRECT
+OTH_044.png                              | others          | CMP(scratch)    | WRONG
+OTH_045.png                              | others          | others          | CORRECT
+OTH_046.png                              | others          | cracks          | WRONG
+OTH_047.png                              | others          | others          | CORRECT
+OTH_048.png                              | others          | others          | CORRECT
+OTH_049.png                              | others          | CMP(scratch)    | WRONG
+OTH_050.png                              | others          | open            | WRONG
+PRT_001.png                              | others          | others          | CORRECT
+PRT_002.png                              | others          | CMP(scratch)    | WRONG
+PRT_003.png                              | others          | bridge          | WRONG
+PRT_004.png                              | others          | open            | WRONG
+PRT_005.png                              | others          | open            | WRONG
+PRT_006.png                              | others          | others          | CORRECT
+PRT_007.png                              | others          | others          | CORRECT
+PRT_008.png                              | others          | others          | CORRECT
+PRT_009.png                              | others          | others          | CORRECT
+PRT_010.png                              | others          | LER             | WRONG
+PRT_011.png                              | others          | open            | WRONG
+PRT_012.png                              | others          | others          | CORRECT
+PRT_013.png                              | others          | CMP(scratch)    | WRONG
+PRT_014.png                              | others          | others          | CORRECT
+PRT_015.png                              | others          | others          | CORRECT
+PRT_016.png                              | others          | others          | CORRECT
+PRT_017.png                              | others          | open            | WRONG
+PRT_018.png                              | others          | others          | CORRECT
+PRT_019.png                              | others          | others          | CORRECT
+PRT_020.png                              | others          | CMP(scratch)    | WRONG
+PRT_021.png                              | others          | others          | CORRECT
+PRT_022.png                              | others          | bridge          | WRONG
+PRT_023.png                              | others          | others          | CORRECT
+PRT_024.png                              | others          | bridge          | WRONG
+PRT_025.png                              | others          | others          | CORRECT
+PRT_026.png                              | others          | open            | WRONG
+PRT_027.png                              | others          | others          | CORRECT
+PRT_028.png                              | others          | open            | WRONG
+PRT_029.png                              | others          | others          | CORRECT
+PRT_030.png                              | others          | others          | CORRECT
+VIA_001.png                              | vias            | others          | WRONG
+VIA_002.png                              | vias            | vias            | CORRECT
+VIA_003.png                              | vias            | vias            | CORRECT
+VIA_004.png                              | vias            | vias            | CORRECT
+VIA_005.png                              | vias            | vias            | CORRECT
+VIA_006.png                              | vias            | open            | WRONG
+VIA_007.png                              | vias            | others          | WRONG
+VIA_008.png                              | vias            | vias            | CORRECT
+VIA_009.png                              | vias            | others          | WRONG
+VIA_010.png                              | vias            | others          | WRONG
+VIA_011.png                              | vias            | others          | WRONG
+VIA_012.png                              | vias            | others          | WRONG
+VIA_013.png                              | vias            | others          | WRONG
+VIA_014.png                              | vias            | clean           | WRONG
+VIA_015.png                              | vias            | others          | WRONG
+VIA_016.png                              | vias            | others          | WRONG
+VIA_017.png                              | vias            | others          | WRONG
+VIA_018.png                              | vias            | vias            | CORRECT
+VIA_019.png                              | vias            | vias            | CORRECT
+VIA_020.png                              | vias            | others          | WRONG
+VIA_021.png                              | vias            | others          | WRONG
+VIA_022.png                              | vias            | others          | WRONG
+VIA_023.png                              | vias            | others          | WRONG
+VIA_024.png                              | vias            | others          | WRONG
+VIA_025.png                              | vias            | others          | WRONG
+VIA_026.png                              | vias            | others          | WRONG
+VIA_027.png                              | vias            | others          | WRONG
+VIA_028.png                              | vias            | others          | WRONG
+VIA_029.png                              | vias            | clean           | WRONG
+VIA_030.png                              | vias            | others          | WRONG
+================================================================================
+END OF LOG
