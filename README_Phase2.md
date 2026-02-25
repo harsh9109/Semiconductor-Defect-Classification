@@ -1,114 +1,87 @@
-🔬 Semiconductor Defect Classification
-Phase-2 — Frozen ONNX Inference (Edge Deployment Focus)
-📌 Phase-2 Objective
+# 🔬 Semiconductor Defect Classification  
+## 🚀 Phase-2 — Frozen ONNX Inference (Edge Deployment Focus)
 
-Phase-2 focuses strictly on deployment-ready inference using a frozen ONNX model exported from Phase-1.
+---
 
-Unlike Phase-1 (training & experimentation), Phase-2 simulates a real semiconductor inspection deployment scenario with strict constraints:
+## 📌 Phase-2 Objective
 
-🔒 Deployment Constraints
+Phase-2 focuses strictly on **deployment-ready inference** using a **frozen ONNX model** exported from Phase-1.
 
-❌ No retraining
+Unlike Phase-1 (training & experimentation), Phase-2 simulates a real industrial semiconductor inspection deployment scenario with strict compliance constraints.
 
-❌ No weight updates
+---
 
-❌ No architecture modification
+## 🔒 Deployment Constraints
 
-❌ No Test-Time Augmentation (TTA)
+| Constraint                              | Status |
+|------------------------------------------|--------|
+| No retraining                            | ✅     |
+| No weight updates                        | ✅     |
+| No architecture modification             | ✅     |
+| No Test-Time Augmentation (TTA)          | ✅     |
+| No heuristic defect detection            | ✅     |
+| No feature engineering tricks            | ✅     |
+| Single deterministic ONNX forward pass   | ✅     |
+| Threshold-based decision logic only      | ✅     |
 
-❌ No heuristic defect detection
+**✔ Ensures fair evaluation**  
+**✔ Maintains industrial realism**  
+**✔ Fully edge-deployment compliant**  
+**✔ Deterministic & reproducible outputs**
 
-❌ No feature engineering tricks
+---
 
-✅ Single deterministic ONNX forward pass
+## 🧠 Model Architecture
 
-✅ Threshold-based decision logic only
+- **Base Model:** MobileNetV2  
+- **Export Format:** ONNX (FP32)  
+- **Inference Engine:** ONNX Runtime  
+- **Model Size:** ~10MB  
 
-This ensures:
+### 📚 Reference
+Sandler et al., *MobileNetV2: Inverted Residuals and Linear Bottlenecks*, CVPR 2018.
 
-Fair evaluation
+### 💡 Why MobileNetV2?
 
-Industrial realism
-
-Edge deployment compliance
-
-Deterministic reproducibility
-
-🧠 Model Architecture
-
-Base Model: MobileNetV2
-Export Format: ONNX (FP32)
-Inference Engine: ONNX Runtime
-
-📚 Reference
-
-Sandler et al., MobileNetV2: Inverted Residuals and Linear Bottlenecks, CVPR 2018.
-
-Why MobileNetV2?
-
-Depthwise separable convolutions
-
-Inverted residual bottlenecks
-
-Lightweight (~10MB ONNX model)
-
-Low latency
-
-Edge-device compatible
-
-Efficient spatial feature extraction
+- Depthwise separable convolutions  
+- Inverted residual bottlenecks  
+- Lightweight architecture  
+- Low memory footprint  
+- Low latency inference  
+- Edge-device compatible  
 
 MobileNetV2 provides an optimal balance between:
 
-Accuracy
+- ✅ Accuracy  
+- ✅ Memory efficiency  
+- ✅ Inference speed  
+- ✅ Embedded deployment feasibility  
 
-Memory footprint
+---
 
-Inference speed
+## 🧪 Defect Classes (8 Categories)
 
-Embedded deployment feasibility
-
-🧪 Defect Classes (8 Categories)
-
-The model classifies SEM die-level wafer images into:
+The system classifies SEM die-level wafer images into:
 
 bridge
-
 clean
-
 CMP(scratch)
-
 cracks
-
 LER (Line Edge Roughness)
-
 open
-
 others
-
 vias
 
-These represent common structural and micro-pattern defects observed in semiconductor fabrication processes.
 
-⚙ Phase-2 Compliance Matrix
-Constraint	Status
-No retraining	✅
-No weight updates	✅
-No architecture change	✅
-No TTA	✅
-No heuristic logic	✅
-Single ONNX forward pass	✅
-Threshold-based decision only	✅
+These represent common structural and micro-pattern defects observed in semiconductor fabrication.
 
-The Phase-2 model is exactly the frozen ONNX model exported from Phase-1.
+---
 
-🔄 Inference Pipeline
-
-The inference process strictly follows deployment-compliant steps:
+## 🔄 Inference Pipeline
 
 Load frozen ONNX model (ONNX Runtime)
 
-Resize input SEM image → 224 × 224
+Resize SEM image → 224 × 224
 
 Apply training-consistent normalization
 
@@ -120,163 +93,172 @@ Apply fixed confidence threshold
 
 Return predicted class
 
-Important Notes
 
-No CLAHE
+### 🚫 Explicitly Not Used
 
-No sharpening
+- No CLAHE  
+- No sharpening  
+- No handcrafted features  
+- No multi-pass inference  
+- No augmentation  
 
-No handcrafted features
+**✔ Deterministic outputs**  
+**✔ Evaluation fairness**  
+**✔ Deployment realism**
 
-No multi-pass inference
+---
 
-No augmentation
+## 📊 Phase-2 Evaluation Results
 
-This ensures:
+| Metric                | Value   |
+|-----------------------|---------|
+| **Overall Accuracy**  | 43.92%  |
+| **Macro Precision**   | 0.5126  |
+| **Macro Recall**      | 0.4081  |
+| **Macro F1-Score**    | 0.4220  |
 
-Deterministic outputs
+### 📌 Metric Interpretation
 
-Deployment realism
+- **Macro Precision (0.5126)**  
+  → Predictions are reasonably confident when a class is selected.
 
-Evaluation fairness
+- **Macro Recall (0.4081)**  
+  → Fine-grained defect classes are harder to detect consistently under deployment constraints.
 
-Industrial compatibility
+- **Macro F1 (0.4220)**  
+  → Balanced performance considering frozen-model and resolution mismatch conditions.
 
-📊 Phase-2 Evaluation Results
+These results reflect realistic edge deployment performance rather than experimental optimization.
 
-Overall Accuracy: 43.92%
-Macro Precision: 0.5126
-Macro Recall: 0.4081
-Macro F1-Score: 0.4220
+---
 
-Metric Interpretation
+## 📈 Performance Observations
 
-Macro Precision (0.5126) → Model predictions are reasonably confident when predicting specific classes.
+### ✅ Strong Detection Performance
 
-Macro Recall (0.4081) → Some defect classes are harder to detect consistently.
-
-Macro F1 (0.4220) → Balanced performance under strict deployment constraints.
-
-Given the frozen model condition and resolution shift, performance reflects realistic deployment behavior.
-
-📈 Performance Observations
-✅ Strong Detection Performance
-
-The model performs relatively better on:
+Better detection observed in:
 
 cracks
-
 CMP(scratch)
-
 bridge
 
-These defects exhibit larger structural distortions that are effectively captured by convolutional feature hierarchies.
 
-⚠ Fine-Grained Class Degradation
+These defects exhibit larger structural distortions, effectively captured by convolutional feature hierarchies.
+
+---
+
+### ⚠ Fine-Grained Class Degradation
 
 Lower performance observed in:
 
 LER
-
 vias
-
 open
 
-🔬 Root Cause Analysis — Resolution-Domain Shift
-Training Resolution:
 
+---
+
+## 🔬 Root Cause Analysis — Resolution-Domain Shift
+
+### Training Resolution
 224 × 224
 
-Phase-2 Test Resolution:
 
-128 × 128 (upscaled to 224 × 224)
+### Phase-2 Test Resolution
+128 × 128 → Upscaled to 224 × 224
 
-Effects of Upscaling
 
-Interpolation smoothing
+### Effects of Upscaling
 
-Edge attenuation
-
-Reduced micro-contrast
-
-Loss of high-frequency gradients
+- Interpolation smoothing  
+- Edge attenuation  
+- Reduced micro-contrast  
+- Loss of high-frequency gradients  
 
 Fine-grained defects such as:
 
-Line Edge Roughness (LER)
-
-Micro vias
-
-Narrow open circuits
+- Line Edge Roughness (LER)  
+- Micro vias  
+- Narrow open circuits  
 
 are highly dependent on edge-level micro-structural fidelity.
 
 Lightweight CNNs like MobileNetV2 use depthwise convolutions, which are computationally efficient but sensitive to spatial resolution degradation.
 
-Therefore:
+**Conclusion:**  
+Performance degradation is attributed to resolution-domain mismatch, not architectural instability.
 
-Performance degradation is attributed to resolution-domain mismatch rather than architectural instability.
+---
 
-This mirrors real-world industrial deployment challenges.
-
-🏭 Semiconductor Inspection Philosophy
+## 🏭 Semiconductor Inspection Philosophy
 
 In semiconductor manufacturing:
 
-Missing a real defect is more critical than raising a false alarm.
+> Missing a real defect is more critical than raising a false alarm.
 
-Therefore, recall is prioritized over purely cosmetic accuracy improvement.
+Therefore, recall is prioritized over cosmetic accuracy improvements.
 
-Phase-2 was designed to remain compliant rather than artificially boosting metrics.
+Phase-2 strictly maintains compliance rather than artificially boosting metrics.
 
-🚀 Deployment Characteristics
-Property	Value
-Model Size	~10MB (FP32 ONNX)
-Framework	ONNX Runtime
-Inference Type	Single-pass deterministic
-Preprocessing	Minimal
-Edge Deployment	Supported
+---
 
-Suitable for:
+## 🚀 Deployment Characteristics
 
-Embedded inspection systems
+| Property         | Value                 |
+|------------------|-----------------------|
+| Model Size       | ~10MB (FP32 ONNX)     |
+| Framework        | ONNX Runtime          |
+| Inference Type   | Single-pass deterministic |
+| Preprocessing    | Minimal               |
+| Edge Deployment  | Supported             |
 
-Edge AI accelerators
+### Suitable For
 
-Industry 4.0 quality control
+- Embedded inspection systems  
+- Edge AI accelerators  
+- Industry 4.0 quality control pipelines  
+- On-device semiconductor screening  
 
-On-device semiconductor screening
+---
 
-🔧 Engineering Takeaways
+## 🔧 Engineering Takeaways
 
-Lightweight CNNs remain viable for industrial inspection.
+- Lightweight CNNs remain viable for industrial inspection  
+- Resolution consistency is critical for fine-grained defect detection  
+- Deployment constraints significantly influence classification behavior  
+- Edge AI requires balancing accuracy, recall, and compute efficiency  
+- Resolution-domain alignment is essential for micro-defect reliability  
 
-Resolution consistency is critical for fine-grained defect detection.
+---
 
-Deployment constraints significantly influence classification behavior.
+## 📚 References
 
-Edge AI requires balancing recall, accuracy, and compute limits.
+- Sandler et al., *MobileNetV2: Inverted Residuals and Linear Bottlenecks*, CVPR 2018  
+- ONNX — Open Neural Network Exchange  
+- ONNX Runtime — High-performance cross-platform inference engine  
 
-Resolution-domain alignment is essential for micro-defect detection systems.
+---
 
-📚 References
-
-Sandler et al., MobileNetV2: Inverted Residuals and Linear Bottlenecks, CVPR 2018.
-
-ONNX — Open Neural Network Exchange
-
-ONNX Runtime — Cross-platform high-performance inference engine
-
-📜 License
+## 📜 License
 
 This project is intended for:
 
-Research
-
-Academic evaluation
-
-Educational demonstration
-
-Hackathon submission
+- Research  
+- Academic evaluation  
+- Educational demonstration  
+- Hackathon submission  
 
 Not intended for direct commercial semiconductor fabrication deployment.
+
+---
+
+# 🏁 Final Statement
+
+This Phase-2 submission strictly adheres to:
+
+- Frozen model policy  
+- Deterministic inference  
+- No retraining  
+- No artificial performance inflation  
+
+The reported metrics represent true deployment behavior under industrial edge constraints.
